@@ -16,7 +16,7 @@
       "cSpell.words": [
         "sahee",
       ],
-      "nuxt.isNuxtApp": true,
+      "nuxt.isNuxtApp": false,
     }
   }
   
