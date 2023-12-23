@@ -10,7 +10,7 @@
 @import 'tailwindcss/utilities';
 
 body {
-    color: red;
+    color: $text-color;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
 }
