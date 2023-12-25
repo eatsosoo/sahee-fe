@@ -1,21 +1,27 @@
 <template>
-  <div class="TextField">
+  <div class="PasswordField relative">
     <label v-if="props.label" :for="props.name">
       {{ props.label }}
     </label>
     <input
-      type="text"
+      :type="`${!hidden ? 'password' : 'text'}`"
       v-model="value"
-      class="py-2 px-3 rounded-[1rem] bg-field outline-outline border-outline border-[2px] w-full"
+      class="py-2 pl-2 pr-8 rounded-[1rem] bg-field outline-outline border-outline border-[2px] w-full"
       :placeholder="props.placeholder"
       @input="$emit('updateValue', value)"
     />
+
+    <font-awesome-icon
+      :icon="`fa-solid ${!hidden ? 'fa-eye' : 'fa-eye-slash'}`"
+      class="absolute top-[1rem] right-[0.5rem] float-right cursor-pointer text-primary"
+      @click="hidden = !hidden"
+    />
+
     <ErrorLabel v-if="props.errorsMessage" :message="errorMessage"></ErrorLabel>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useField } from 'vee-validate'
 const props = defineProps({
   name: {
     type: String,
@@ -39,11 +45,13 @@ const props = defineProps({
   },
 })
 
+const hidden = ref(false)
+
 const { value, errorMessage } = useField(() => props.name)
 </script>
 
 <style lang="scss" scoped>
-.TextField {
+.PasswordField {
   font-size: 14px;
   min-height: 40px;
   line-height: 1.7;
