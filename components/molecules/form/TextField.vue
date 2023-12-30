@@ -6,7 +6,7 @@
     <input
       type="text"
       v-model="value"
-      class="py-2 px-3 rounded-[1rem] bg-field outline-outline border-outline border-[2px] w-full"
+      class="py-1 px-3 rounded bg-field outline-outline border-outline border-[1px] w-full"
       :placeholder="props.placeholder"
       @input="$emit('updateValue', value)"
     />

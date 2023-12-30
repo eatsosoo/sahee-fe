@@ -6,14 +6,14 @@
     <input
       :type="`${!hidden ? 'password' : 'text'}`"
       v-model="value"
-      class="py-2 pl-2 pr-8 rounded-[1rem] bg-field outline-outline border-outline border-[2px] w-full"
+      class="py-1 pl-2 pr-8 rounded bg-field outline-outline border-outline border-[1px] w-full"
       :placeholder="props.placeholder"
       @input="$emit('updateValue', value)"
     />
 
     <font-awesome-icon
       :icon="`fa-solid ${!hidden ? 'fa-eye' : 'fa-eye-slash'}`"
-      class="absolute top-[1rem] right-[0.5rem] float-right cursor-pointer text-primary"
+      class="absolute top-[0.6rem] right-[0.5rem] float-right cursor-pointer text-primary"
       @click="hidden = !hidden"
     />
 

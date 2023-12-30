@@ -2,10 +2,10 @@
   <div class="LoginPage h-[100vh] grid grid-cols-2">
     <div class="flex flex-col justify-center items-centers bg-primary">
       <div class="mx-auto">
-        <Card class="w-[28rem] p-5 bg-white">
+        <Card class="w-[28rem] p-5 bg-white flex flex-col items-center">
           <p class="text-2xl text-center font-bold mb-4">Login to your Sahee</p>
 
-          <form @submit="onSubmit">
+          <form @submit="onSubmit" class="w-[22rem]">
             <TextField name="email" :errors-message="true" placeholder="Email" class="h-[4rem]" />
 
             <Password
@@ -49,7 +49,7 @@ const { handleSubmit } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2))
+  console.log(values)
 })
 </script>
 
