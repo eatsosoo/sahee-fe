@@ -20,6 +20,7 @@
             <NuxtLink to="/" class="px-8 py-4">Watch</NuxtLink>
           </div>
         </div>
+
         <div>
           <NuxtLink to="/login" class="px-8 py-4">
             <button class="rounded px-8 py-2 bg-primary text-white mr-2">Sign In</button>

@@ -1,23 +1,24 @@
 {
-    "folders": [
-      {
-        "path": "."
-      },
+  "folders": [
+    {
+      "path": "."
+    },
+  ],
+  "settings": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.fixAll.stylelint": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "vue.complete.casing.tags": "kebab",
+    "volar.format.initialIndent": {
+      "html": true,
+    },
+    "cSpell.words": [
+      "sahee",
+      "nuxt",
     ],
-    "settings": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit",
-        "source.fixAll.stylelint": "explicit"
-      },
-      "editor.formatOnSave": true,
-      "volar.format.initialIndent": {
-        "html": true,
-      },
-      "cSpell.words": [
-        "sahee",
-        "nuxt",
-      ],
-      "nuxt.isNuxtApp": false,
-    }
+    "nuxt.isNuxtApp": false,
   }
+}
   

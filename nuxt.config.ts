@@ -8,6 +8,12 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  routeRules: {
+    '/news/**': { ssr: false },
+  },
+
+  ssr: false,
+
   components: [
     {
       path: '~/components',
@@ -38,5 +44,9 @@ export default defineNuxtConfig({
       FieldArray: 'VeeFieldArray',
       ErrorMessage: 'VeeErrorMessage',
     },
+  },
+
+  pinia: {
+    storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
 })

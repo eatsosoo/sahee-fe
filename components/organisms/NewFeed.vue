@@ -3,7 +3,7 @@
     <NewPost class="mb-4"></NewPost>
 
     <News
-      v-for="post in posts"
+      v-for="post in props.posts"
       :value="post"
       :key="post.id"
       class="mb-4 pb-1"
@@ -24,8 +24,15 @@
 <script setup lang="ts">
 import { Methods, serviceApi } from '@/utils/api'
 import { type CommentItemType, type PostItemType } from '@/components/molecules/News.vue'
+import type { PropType } from 'vue'
 
-const posts = ref<PostItemType[]>([])
+const props = defineProps({
+  posts: {
+    type: Array as PropType<PostItemType[]>,
+    default: () => [],
+  },
+})
+
 const comments = ref<CommentItemType[]>([])
 const postTarget = ref<PostItemType | null>(null)
 
@@ -34,7 +41,7 @@ const state = reactive({
 })
 
 const activeCommentDialog = (postId: number) => {
-  postTarget.value = posts.value.find((post: PostItemType) => post.id === postId) as PostItemType
+  postTarget.value = props.posts.find((post: PostItemType) => post.id === postId) as PostItemType
   state.activeCommentDialog = true
   getCommentsOfPost()
 }
@@ -49,13 +56,6 @@ const getCommentsOfPost = async () => {
 
   if (!res || !res.result) comments.value = []
   comments.value = handleCommentsTree(res.data.comments)
-}
-
-const getPosts = async () => {
-  const res = await serviceApi(Methods.Get, '/posts?sort={"field":"id","order":"DESC"}')
-
-  if (!res || !res.result) posts.value = []
-  posts.value = res.data.posts
 }
 
 const handleCommentsTree = (commentOfPost: CommentItemType[]) => {
@@ -82,6 +82,4 @@ const handleCommentsTree = (commentOfPost: CommentItemType[]) => {
 
   return rootComments
 }
-
-getPosts()
 </script>

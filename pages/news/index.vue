@@ -2,8 +2,36 @@
   <ThreeColumn>
     <template #left></template>
     <template #center>
-      <NewFeed></NewFeed>
+      <NewFeed :posts="posts"></NewFeed>
     </template>
     <template #right></template>
   </ThreeColumn>
 </template>
+
+<script setup lang="ts">
+import type { PostItemType } from '~/components/molecules/News.vue'
+import { useApi } from '@/composable/useApiFetch'
+
+const posts = ref<PostItemType[]>([])
+
+type ResponseResultType = {
+  version: string
+  data: { [key: string]: any }
+  result: boolean
+}
+
+const getPosts = async () => {
+  const { api } = useApi(undefined, 'GET', null, undefined)
+  const { data: responseData } = await api<ResponseResultType>('/posts')
+  if (!responseData) {
+    posts.value = []
+  }
+
+  if (responseData.value) {
+    const { data } = responseData.value
+    posts.value = data.posts
+  }
+}
+
+getPosts()
+</script>

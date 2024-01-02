@@ -8,5 +8,5 @@
     </template>
     <template #right></template>
   </ThreeColumn> -->
-  <div>cc</div>
+  <div></div>
 </template>
