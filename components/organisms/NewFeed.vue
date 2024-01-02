@@ -44,7 +44,7 @@ const getCommentsOfPost = async () => {
 
   const res = await serviceApi(
     Methods.Get,
-    `http://sahee/api/comments?post_id=${postTarget.value.id}&sort={"field":"id","order":"DESC"}`
+    `/comments?post_id=${postTarget.value.id}&sort={"field":"id","order":"DESC"}`
   )
 
   if (!res || !res.result) comments.value = []
@@ -52,10 +52,7 @@ const getCommentsOfPost = async () => {
 }
 
 const getPosts = async () => {
-  const res = await serviceApi(
-    Methods.Get,
-    'http://sahee/api/posts?sort={"field":"id","order":"DESC"}'
-  )
+  const res = await serviceApi(Methods.Get, '/posts?sort={"field":"id","order":"DESC"}')
 
   if (!res || !res.result) posts.value = []
   posts.value = res.data.posts

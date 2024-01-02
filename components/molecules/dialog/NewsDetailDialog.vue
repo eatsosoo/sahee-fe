@@ -54,7 +54,7 @@ const handleEnter = async (event: any) => {
   if (event.shiftKey) {
     return
   }
-  const { result, data } = await serviceApi(Methods.Post, `http://sahee/api/comments`, {
+  const { result, data } = await serviceApi(Methods.Post, `/comments`, {
     content: content.value,
     user_id: 1,
     post_id: props.value.id,

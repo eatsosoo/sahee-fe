@@ -8,7 +8,7 @@
             <NuxtLink to="/news" class="px-8 py-4">New Feeds</NuxtLink>
           </div>
           <div class="py-4 font-semibold cursor-pointer hover:bg-background rounded">
-            <NuxtLink to="/my-posts" class="px-8 py-4">Posts</NuxtLink>
+            <NuxtLink to="/" class="px-8 py-4">Posts</NuxtLink>
           </div>
           <div class="py-4 font-semibold cursor-pointer hover:bg-background rounded">
             <NuxtLink to="/" class="px-8 py-4">Tools</NuxtLink>
@@ -21,7 +21,10 @@
           </div>
         </div>
         <div>
-          <button class="rounded px-8 py-2 bg-primary text-white mr-2">Sign In</button>
+          <NuxtLink to="/login" class="px-8 py-4">
+            <button class="rounded px-8 py-2 bg-primary text-white mr-2">Sign In</button>
+          </NuxtLink>
+
           <button class="rounded px-8 py-2 bg-extra text-extra-1000">Sign Up</button>
         </div>
       </div>

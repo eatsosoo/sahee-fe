@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-// const baseDomain = process.env.BASE_URL_API
-const baseURL = 'http://sahee/api/'
-
 export enum Resources {
   Template = 'templates',
   Approach = 'approaches',
@@ -34,6 +31,9 @@ export const serviceApi = async (
   formData?: object
 ): Promise<ResponseResultType> => {
   try {
+    const config = useRuntimeConfig()
+    const baseURL = config.public.apiUrl
+
     const Client = axios.create({
       baseURL,
       headers: {

@@ -6,7 +6,7 @@
           <p class="text-2xl text-center font-bold mb-4">Login to your Sahee</p>
 
           <form @submit="onSubmit" class="w-[22rem]">
-            <TextField name="email" :errors-message="true" placeholder="Email" class="h-[4rem]" />
+            <TextField name="email" :errors-message="true" placeholder="Email" class="h-[3.5rem]" />
 
             <Password
               name="password"
