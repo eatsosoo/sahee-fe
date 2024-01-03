@@ -72,7 +72,6 @@
 
 <script setup lang="ts">
 import Card from '@/components/molecules/card/Card.vue'
-import { convertLikes, timeAgo } from '@/utils/utils'
 
 export interface PostItemType {
   id: number

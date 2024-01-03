@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import Header from '~/components/organisms/Header.vue'
+import Header from '@/components/organisms/Header.vue'
 </script>
 
 <style scoped>

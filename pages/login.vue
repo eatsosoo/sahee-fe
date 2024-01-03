@@ -3,7 +3,9 @@
     <div class="flex flex-col justify-center items-centers bg-primary">
       <div class="mx-auto">
         <Card class="w-[28rem] p-5 bg-white flex flex-col items-center">
-          <p class="text-2xl text-center font-bold mb-4">Login to your Sahee</p>
+          <p class="text-2xl text-center font-bold mb-4">
+            Login to your Sahee {{ object.id.value + 1 }}
+          </p>
 
           <form @submit="onSubmit" class="w-[22rem]">
             <TextField name="email" :errors-message="true" placeholder="Email" class="h-[3.5rem]" />
@@ -16,10 +18,12 @@
             />
 
             <div class="text-center">
-              <p class="text-right text-xs mb-2 cursor-pointer hover:underline hover:text-sky-400">
-                Forgot password?
-              </p>
-              <button class="rounded-[1rem] px-16 py-2 bg-primary text-white mb-2">Sign In</button>
+              <div class="text-right mb-2">
+                <NuxtLink to="/" class="text-xs cursor-pointer hover:underline hover:text-sky-400">
+                  Forgot password?
+                </NuxtLink>
+              </div>
+              <Button :title="'Sign In'" class="w-48"></Button>
             </div>
           </form>
         </Card>
@@ -36,11 +40,19 @@
 import * as Form from '@/components/molecules/form/form-components'
 import * as yup from 'yup'
 import { useForm } from 'vee-validate'
-import { useApiFetch } from '@/composable/useApiFetch'
+import { useApi, type ResponseResultType } from '@/composable/useApiFetch'
 
 definePageMeta({
   layout: 'auth',
 })
+
+useHead({
+  title: 'Login Page',
+})
+
+const errorMessage = ref('')
+const object = { id: ref(1) }
+const authStore = useAuthStore()
 
 const { handleSubmit } = useForm({
   validationSchema: yup.object({
@@ -50,7 +62,17 @@ const { handleSubmit } = useForm({
 })
 
 const onSubmit = handleSubmit(async (values) => {
-  console.log(values)
-  const res = await useApiFetch('GET', '/api/login', values)
+  const { api } = useApi(undefined, 'POST', null, values)
+  const { data, error } = await api<ResponseResultType>('/login')
+
+  if (error.value || !data.value) {
+    errorMessage.value = parseErrorMessage(error.value?.data)
+    return
+  }
+
+  const { token } = data.value.data
+  authStore.$setAccessToken(token)
+
+  await navigateTo('/')
 })
 </script>

@@ -12,14 +12,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#ffbe98',
+        primary: {
+          DEFAULT: '#ffbe98',
+          700: '#ffae80',
+          800: '#ff9e66',
+          900: '#ff8e4d',
+        },
         secondary: '#ffd998',
-        extra: '#E8DBD2',
-        'extra-1000': '#B38A6A',
-        sub: '#97A5B8',
-        background: '#F4F6FC',
-        field: '#F5EDF1',
-        outline: '#F7E0E3',
+        extra: {
+          DEFAULT: '#e8dbd2',
+          1000: '#b38a6a',
+        },
+        sub: '#97a5b8',
+        background: '#f4f6fc',
+        field: '#f5edf1',
+        outline: '#f7e0e3',
         error: '#ff3333',
         sky: {
           50: '#f0f9ff',

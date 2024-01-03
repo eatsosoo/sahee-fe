@@ -9,16 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import type { PostItemType } from '~/components/molecules/News.vue'
-import { useApi } from '@/composable/useApiFetch'
+import type { PostItemType } from '@/components/molecules/News.vue'
+import { useApi, type ResponseResultType } from '@/composable/useApiFetch'
 
 const posts = ref<PostItemType[]>([])
-
-type ResponseResultType = {
-  version: string
-  data: { [key: string]: any }
-  result: boolean
-}
 
 const getPosts = async () => {
   const { api } = useApi(undefined, 'GET', null, undefined)

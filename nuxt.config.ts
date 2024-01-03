@@ -1,3 +1,5 @@
+import type { NuxtPage } from 'nuxt/schema'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -10,6 +12,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/news/**': { ssr: false },
+    '/login': { ssr: false },
   },
 
   ssr: false,
@@ -48,5 +51,25 @@ export default defineNuxtConfig({
 
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
+  },
+
+  hooks: {
+    'pages:extend'(pages) {
+      function setMiddleware(pages: NuxtPage[]) {
+        for (const page of pages) {
+          if (page.path === '/login') continue
+
+          if (/* some condition */ true) {
+            page.meta ||= {}
+            // Note that this will override any middleware set in `definePageMeta` in the page
+            page.meta.middleware = ['redirect']
+          }
+          if (page.children) {
+            setMiddleware(page.children)
+          }
+        }
+      }
+      setMiddleware(pages)
+    },
   },
 })
